@@ -8,16 +8,19 @@ byte-identical installed/validated build, not a renamed or feature-modified buil
 For development you need .NET SDK 10 and your own compatible Rat Game installation.
 The game, Unity, Steam and Netcode libraries are read-only references from your
 installation; they are intentionally absent from this download. BepInEx runtime
-references can come from this package's GameFiles/BepInEx/core directory.
+references must come from your own compatible BepInEx 5 installation. The
+GitHub source tree intentionally does not contain the packaged runtime files.
 NuGet.Config clears remote feeds; no package restore downloads are needed for
 the mod or pure offline tests when the .NET targeting packs are installed.
 
 From this directory, build with your own paths, for example:
 
-  dotnet build src/RatGamePublicMatchmaking.csproj -c Release -p:RatGameDir="C:\path\to\rat game"
+  dotnet build src/RatGamePublicMatchmaking.csproj -c Release -p:RatGameDir="C:\path\to\rat game" -p:BepInExCoreDir="C:\path\to\rat game\BepInEx\core"
 
-The default BepInExCoreDir points to ../../../GameFiles/BepInEx/core relative to
-src. You can override GameManagedDir and BepInExCoreDir with -p:Name="your path".
+The project retains its original release-package default BepInExCoreDir path,
+which does not exist in this cleaned source repository. Set BepInExCoreDir
+explicitly to your local BepInEx/core folder as shown above. You can also
+override GameManagedDir with -p:GameManagedDir="your path".
 The plugin targets netstandard2.1. It does not require a new NGO protocol or any
 game assembly edits. Do not copy referenced game assemblies into distribution.
 
@@ -26,7 +29,7 @@ Run the pure offline regression suite:
   dotnet run --project tests/SafetyTests.csproj -c Release
 
 These tests execute no Unity, Steam or game code and do not prove remote joining.
-See ../../Validation/TEST-SUMMARY.txt for the beta's actual test status.
+See the repository's Validation/TEST-SUMMARY.txt for the beta's actual test status.
 
 Different source/PDB paths can change a locally rebuilt DLL's hash. The release
 preparation build used .NET SDK 10.0.402 and PathMap to map the clean source root
