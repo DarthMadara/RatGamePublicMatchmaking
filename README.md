@@ -56,6 +56,10 @@ Read [KNOWN LIMITATIONS.txt](KNOWN%20LIMITATIONS.txt) and [Validation/TEST-SUMMA
 
 The repository tracks source and documentation; **compiled binaries and bundled loader dependencies are distributed in GitHub Releases**, not the source tree. Building requires your own Rat Game installation and BepInEx references. See the build instructions for the exact commands.
 
+## AI Usage Disclosure
+
+OpenAI Codex assisted with programming, debugging, and code review for this mod. **No AI-generated artwork, textures, 3D models, audio, or other game assets were created or used.** The mod's interface reuses UI elements and assets from the player's existing Rat Game installation to remain consistent with the game's visual style; those assets are not newly generated or redistributed as original artwork.
+
 ## Credits and disclaimer
 
 Created by **Madara**. Rat Game is developed by **Sokpop Collective**. This is an unofficial community modification and is **not affiliated with or endorsed by Sokpop Collective**. No proprietary Rat Game assets or game assemblies are distributed as source.
