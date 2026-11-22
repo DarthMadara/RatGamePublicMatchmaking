@@ -1,0 +1,25 @@
+Rat Game Public Matchmaking | Author: Madara
+
+0.1.0-beta.1 - first public beta candidate, prepared 2026-11-22
+
+This package freezes the validated 0.1.0+waiting-browser.1 plugin unchanged.
+No gameplay features or menu redesigns were added during release preparation.
+
+Included behavior from waiting-browser.1:
+- Level Public Hosting tooltip text and box; native button behavior retained.
+- Public Lobbies browser on the right of the main menu, native rows and controls,
+  player counts, Join, Refresh and automatic refresh about every 30 seconds.
+- Waiting/starting/ingame metadata tied to native GameManager/NGO lifecycle.
+- Public withdrawal at match start and conditional restoration after lobby return.
+- Existing build/capacity/publication checks, bounded public joining, cancellation,
+  stale-result handling and optional F8 fallback.
+
+Release preparation:
+- Clean reproducible build; 100 offline checks; 23 exact Harmony targets verified.
+- Bundled the validated Windows x64 BepInEx 5.4.23.5 dependency set, license notices
+  and matching Doorstop 4.5.0 source. No proprietary game files included.
+- Added install/uninstall help, known limitations, mod/source license and checksums.
+- Public Hosting and development UI tools ship OFF; F8 starts hidden.
+
+Still NOT VERIFIED: two-account public joining, friends/invite late joins,
+physical controllers and actual network races. See KNOWN LIMITATIONS.txt.

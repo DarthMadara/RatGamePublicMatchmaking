@@ -1,0 +1,42 @@
+Rat Game Public Matchmaking 0.1.0-beta.1 - test disclosure
+Author: Madara | Validated plugin: 0.1.0+waiting-browser.1
+Prepared 2026-11-22
+
+FINAL RELEASE-PREPARATION CHECKS
+
+- Fresh source/test/validator folders with no inherited bin or obj output.
+- Clean offline Release build using .NET SDK 10.0.402, zero compiler warnings/errors.
+- 100 offline safety/presentation checks passed.
+- 23 exact Harmony targets and 1359 external game member references verified.
+- Original critical game assembly hashes matched the investigated originals.
+- Clean DLL, preserved validated DLL, installed DLL and packaged plugin match:
+  SHA-256 37837EB373022F256518BE789A9FCBCE47D66CC3656E8B1D261478C138C78684
+- Development tools default OFF in compiled plugin; the supplied config has
+  NativeUiTools=false and PublicHosting=false. F8 starts hidden. There are no
+  active fixture rows, test commands or fake Steam lobbies in the runtime payload.
+- Bundled loader files match the official BepInEx 5.4.23.5 x64 archive.
+- Archive payload, safe paths, checksums and an extracted copy are checked by
+  the release verifier. No deployment to the installed game is performed.
+
+PRIOR IN-GAME EVIDENCE FOR THIS SAME PLUGIN
+
+Normal Steam Library launch; single-account hosting and discovery of its own
+waiting lobby; native solo Co-op start withdrawing the listing; ingame state;
+return to the 3D lobby with Public Hosting ON or OFF; native visibility withdrawal;
+advertised-host disconnect cleanup; corrected tooltip text/box; Public Lobbies
+heading, normal browser and F8 fallback panel. Multiple UI resolutions/scales
+were captured and bounds checked. Some navigation was exercised synthetically.
+
+No game is launched or modified during release preparation. Prior runtime
+evidence is not a new release-install test on a clean second machine/account.
+
+NOT VERIFIED - STILL OPEN
+
+Two-account public joining, nonmember discovery, both players spawning, remote
+scene sync, voice, friend/invite late joins, physical controllers and real network
+races. Last-slot contention, host migration, other mod/game/loader versions and
+vanilla interoperability have not been established. Offline tests of related
+guard logic do not replace these live tests. No atomic race-safety claim.
+
+A genuine two-account smoke test is recommended before approving a broad public
+release. This beta package and its notices do not mark that missing test as passed.

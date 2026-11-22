@@ -1,0 +1,32 @@
+Rat Game Public Matchmaking - uninstall or roll back
+
+1. Close Rat Game completely.
+2. In Steam, right-click Rat Game -> Manage -> Browse local files.
+3. Remove the folder BepInEx\plugins\RatGamePublicMatchmaking.
+   If you installed the DLL somewhere else under plugins, remove that extra
+   RatGamePublicMatchmaking.dll as well. Leave other mods alone.
+4. Optionally remove BepInEx\config\local.ratgame.publicmatchmaking.cfg to
+   forget this mod's preferences. Leaving it there does not load the mod.
+5. Start the game from Steam. This mod's controls and public browser are gone.
+
+If you want the previous working mod instead, restore its backed-up DLL and
+config while the game is closed, rather than deleting them.
+
+TO REMOVE THE BUNDLED LOADER TOO
+
+Only do this if you installed BepInEx solely for this mod and no other mods
+depend on it. Restore any loader files you backed up before installation.
+For an otherwise fresh installation, remove the BepInEx folder and these
+bundle-supplied files beside Rat Game.exe:
+
+  winhttp.dll
+  doorstop_config.ini
+  .doorstop_version
+
+Do not remove Rat Game.exe, Rat Game_Data, UnityPlayer.dll, MonoBleedingEdge or
+other original game files. Removing BepInEx would also remove any other plugins,
+their settings and logs, so keep it if you use other mods.
+
+This mod does not replace original game assemblies. Steam's file verification
+may repair original game files, but it does not reliably remove added mod files;
+use the steps above to uninstall the mod itself.

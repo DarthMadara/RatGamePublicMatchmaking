@@ -1,0 +1,71 @@
+Rat Game Public Matchmaking by Madara - third-party notices
+
+LICENSE.txt covers Madara's mod and its source. It does not relicense the
+components below. Their upstream binaries are included without modification.
+All DLLs below are under GameFiles/BepInEx/core except winhttp.dll.
+
+BepInEx 5.4.23.5 - MIT
+  Files: BepInEx.dll, BepInEx.Preloader.dll and accompanying XML docs.
+  Copyright (c) 2018 Bepis
+  License: Licenses/BepInEx-MIT.txt
+  Source: https://github.com/BepInEx/BepInEx/tree/v5.4.23.5
+  The upstream loader changelog is retained in Licenses/BepInEx-Changelog.txt.
+
+HarmonyX 2.9.0 - MIT
+  Files: 0Harmony.dll and 0Harmony.xml
+  Copyright (c) 2020 BepInEx
+  License: Licenses/HarmonyX-MIT.txt
+  Source: https://github.com/BepInEx/HarmonyX/tree/v2.9.0
+  HarmonyX derives from Harmony. The original Harmony MIT notice is also
+  retained in Licenses/Harmony-MIT.txt, Copyright (c) 2017 Andreas Pardeike.
+
+BepInEx.Harmony / HarmonyXInterop - MIT
+  Files: BepInEx.Harmony.dll, BepInEx.Harmony.xml, HarmonyXInterop.dll,
+  and the bundled Harmony compatibility assembly 0Harmony20.dll.
+  Upstream notice: Copyright (c) 2019
+  Licenses: Licenses/BepInEx.Harmony-MIT.txt and Licenses/Harmony-MIT.txt
+  BepInEx 5.4.23.5 pins its interoperability submodule to:
+  https://github.com/BepInEx/BepInEx.Harmony/tree/d4cdcb4cdeac14a0b77012165f5f5a9f5032a9fa
+
+Mono.Cecil 0.10.4 - MIT
+  Files: Mono.Cecil.dll, Mono.Cecil.Mdb.dll, Mono.Cecil.Pdb.dll,
+  Mono.Cecil.Rocks.dll
+  Copyright (c) 2008 - 2015 Jb Evain
+  Copyright (c) 2008 - 2011 Novell, Inc.
+  License: Licenses/Mono.Cecil-MIT.txt
+  Source: https://github.com/jbevain/cecil/tree/0.10.4
+
+MonoMod.RuntimeDetour / MonoMod.Utils 22.1.29.1 - MIT
+  Files: MonoMod.RuntimeDetour.dll, MonoMod.Utils.dll and XML docs.
+  Copyright (c) 2015 - 2020 0x0ade
+  License: Licenses/MonoMod-MIT.txt
+  Source: https://github.com/MonoMod/MonoMod/tree/v22.01.29.01
+
+Unity Doorstop 4.5.0 - GNU Lesser General Public License, version 2.1
+  Files: GameFiles/winhttp.dll, .doorstop_version and doorstop_config.ini.
+  Project: NeighTools/UnityDoorstop and its contributors
+  Full license: Licenses/UnityDoorstop-LGPL-2.1.txt
+  Corresponding unmodified source, including build scripts and its existing
+  third-party notices: ThirdPartySource/UnityDoorstop-4.5.0.zip
+  Source commit: 33dab9a6733862eb81869ff08431d9478b28784b
+  https://github.com/NeighTools/UnityDoorstop/tree/33dab9a6733862eb81869ff08431d9478b28784b
+  See ThirdPartySource/README.txt for rebuilding/replacing this library.
+  No additional restriction on modification or reverse engineering for
+  debugging your modifications is imposed by this mod's package.
+
+DEPENDENCY ORIGIN
+
+The deployable loader files come from the official Windows x64 archive:
+https://github.com/BepInEx/BepInEx/releases/download/v5.4.23.5/BepInEx_win_x64_5.4.23.5.zip
+Official archive SHA-256:
+82F9878551030F54657792C0740D9D51A09500EEAE1FBA21106B0C441E6732C4
+Every original entry's contents were checked against that archive when packaging.
+
+The tagged BepInEx preloader project identifies the bundled managed versions:
+https://github.com/BepInEx/BepInEx/blob/v5.4.23.5/BepInEx.Preloader/BepInEx.Preloader.csproj
+Its build script pins Doorstop 4.5.0:
+https://github.com/BepInEx/BepInEx/blob/v5.4.23.5/build.cake
+
+Rat Game, Unity, Steam/Facepunch and Unity Netcode remain supplied by the user's
+legitimate game installation. None of their proprietary binaries, fonts, sprites,
+game data, screenshots or decompiled game code are distributed in this ZIP.

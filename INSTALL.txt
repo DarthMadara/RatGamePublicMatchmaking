@@ -1,0 +1,73 @@
+Rat Game Public Matchmaking - installation
+Author: Madara | Package: 0.1.0-beta.1
+
+You need the Windows 64-bit Steam version of Rat Game. This beta was checked
+against Steam game build 26403247 and BepInEx 5.4.23.5. Other game builds,
+operating systems and loader versions have not been verified.
+
+FIRST, FIND YOUR GAME FOLDER
+
+1. Close Rat Game completely.
+2. In your Steam Library, right-click Rat Game, choose Manage, then Browse
+   local files. This opens the folder containing Rat Game.exe.
+3. Extract this mod ZIP to a separate folder, such as Downloads. Do not run
+   the game from the extracted ZIP folder.
+
+IF THIS IS YOUR FIRST BEPINEX MOD
+
+4. If the game folder already has a BepInEx folder, winhttp.dll or
+   doorstop_config.ini, use the existing-loader instructions below instead.
+5. Open GameFiles inside the extracted mod. Copy EVERYTHING INSIDE GameFiles
+   into the game folder next to Rat Game.exe. Copy the contents, not the
+   GameFiles folder itself. Include the small .doorstop_version file if shown.
+6. You should now have these items next to Rat Game.exe:
+
+   BepInEx
+   winhttp.dll
+   doorstop_config.ini
+   .doorstop_version
+
+   Inside BepInEx\plugins\RatGamePublicMatchmaking you should find
+   RatGamePublicMatchmaking.dll. No files inside Rat Game_Data are replaced.
+7. Launch Rat Game from your Steam Library. The main menu should show
+   Public Hosting and a Public Lobbies panel on the right.
+
+IF BEPINEX OR AN EARLIER COPY OF THIS MOD IS ALREADY INSTALLED
+
+4. Back up your existing BepInEx folder, winhttp.dll, doorstop_config.ini and
+   .doorstop_version to a separate backup folder. Keep any previous mod DLL.
+5. Check the start of BepInEx\LogOutput.log for BepInEx 5.4.23.5. If it reports
+   another loader version, leave that loader in place; this bundle has not
+   been checked with it. Resolve the version difference before proceeding.
+6. For a matching 5.4.23.5 setup, copy only:
+
+   GameFiles\BepInEx\plugins\RatGamePublicMatchmaking
+     -> your game's BepInEx\plugins folder
+
+   GameFiles\BepInEx\config\local.ratgame.publicmatchmaking.cfg
+     -> your game's BepInEx\config folder
+
+   Replace this mod's previous DLL/config only after backing them up. Use the
+   supplied config to reset Public Hosting and development tools to OFF.
+   Do not overwrite the loader, other plugins or other configuration files.
+7. Keep just one installed copy of RatGamePublicMatchmaking.dll. Remove an
+   extra older copy from the plugins folder after backing it up elsewhere.
+8. Launch Rat Game from Steam.
+
+IF THE PUBLIC LOBBIES PANEL IS MISSING
+
+Close the game and check that the DLL is in the exact plugins path above,
+with no extra GameFiles or nested BepInEx folder. Look in BepInEx\LogOutput.log
+for Rat Game Public Matchmaking and waiting-browser.1. A game update or another
+mod may be incompatible. Restore your backups to return to your previous setup.
+
+IF STEAM IS UNAVAILABLE OR THE LIST IS EMPTY
+
+Use a normal Steam Library launch with Steam online. Wait a moment and click
+Refresh. An empty list may simply mean no compatible waiting hosts are nearby;
+the Steam wrapper also cannot distinguish every missing response from an empty
+result. There is no listing of active matches and no cross-build fallback.
+
+If a public Join fails or is cancelled, wait for the old Steam request to settle.
+You may need to restart the game before retrying the same lobby. See the README
+and known limitations. Do not enable NativeUiTools to troubleshoot normal play.

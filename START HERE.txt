@@ -1,0 +1,21 @@
+Rat Game Public Matchmaking - 0.1.0-beta.1
+Author: Madara
+
+This is an experimental first beta for Windows 64-bit Steam Rat Game.
+Two-account public joining has NOT been verified. Read KNOWN LIMITATIONS.txt.
+
+1. Close Rat Game. Extract this ZIP somewhere convenient, such as Downloads.
+2. Open INSTALL.txt. It has separate steps for a fresh game and an existing
+   BepInEx setup. The files to install are inside the GameFiles folder.
+3. Start Rat Game from your Steam Library.
+
+To host publicly, turn Public Hosting ON and use the normal Host game button.
+To look for a game, use Public Lobbies on the right side of the main menu.
+Public Hosting starts OFF. Development tools and layout previews start OFF.
+
+README.txt explains how it works. UNINSTALL.txt explains how to remove it.
+You do not need the Source or ThirdPartySource folders to play; keep them with
+the ZIP if you redistribute this complete bundle, along with the license files.
+
+The plugin is the unchanged, locally validated 0.1.0+waiting-browser.1 build.
+The package's beta number does not change the version shown in BepInEx logs.
