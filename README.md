@@ -47,6 +47,14 @@ The release passed **100 offline regression checks**, and local Steam hosting/lo
 
 Read [KNOWN LIMITATIONS.txt](KNOWN%20LIMITATIONS.txt) and [Validation/TEST-SUMMARY.txt](Validation/TEST-SUMMARY.txt) for details. Please include your game build, mod version, and reproduction steps when reporting bugs. Review logs for private/session information before sharing.
 
+## v0.2.0 — Host moderation (release preparation)
+
+The next version adds host-only **Manage Players** and **Manage Bans** screens, targeted **Kick**, persistent host-local **Ban**, and individual **Unban**. The UI reuses Rat Game's installed native assets; no AI-generated assets were introduced.
+
+**November 22, 2026 multiplayer milestone:** The mod author and Eric reported successful live tests of Kick, Ban, and Unban. During their session, an unrelated player joined through public matchmaking and stayed for two games — the project's first reported organic public matchmaking session.
+
+**Testing scope:** These are participant-reported results, not an exhaustive certification. Invitation bypass, ban persistence after restart, controller navigation, and all multiplayer race conditions have not been established by these reports. The previous beta remains the downloadable release until a separately packaged v0.2.0 binary is published.
+
 ## Source code and building
 
 - [C# source and project](Source/RatGamePublicMatchmaking/src/)
