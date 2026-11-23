@@ -1,42 +1,51 @@
-Rat Game Public Matchmaking 0.1.0-beta.1 - test disclosure
-Author: Madara | Validated plugin: 0.1.0+waiting-browser.1
-Prepared 2026-11-22
+Rat Game Public Matchmaking v0.2.0 - validation and testing | Madara
 
-FINAL RELEASE-PREPARATION CHECKS
+SUPPORTED VALIDATION TARGET
+Windows x64 Steam Rat Game app 3347910, build 26403247.
+BepInEx 5.4.23.5 Windows x64. Other versions/platforms unverified.
 
-- Fresh source/test/validator folders with no inherited bin or obj output.
-- Clean offline Release build using .NET SDK 10.0.402, zero compiler warnings/errors.
-- 100 offline safety/presentation checks passed.
-- 23 exact Harmony targets and 1359 external game member references verified.
-- Original critical game assembly hashes matched the investigated originals.
-- Clean DLL, preserved validated DLL, installed DLL and packaged plugin match:
-  SHA-256 37837EB373022F256518BE789A9FCBCE47D66CC3656E8B1D261478C138C78684
-- Development tools default OFF in compiled plugin; the supplied config has
-  NativeUiTools=false and PublicHosting=false. F8 starts hidden. There are no
-  active fixture rows, test commands or fake Steam lobbies in the runtime payload.
-- Bundled loader files match the official BepInEx 5.4.23.5 x64 archive.
-- Archive payload, safe paths, checksums and an extracted copy are checked by
-  the release verifier. No deployment to the installed game is performed.
+PARTICIPANT-CONFIRMED LIVE TESTS - NOVEMBER 22, 2026
+Madara confirms successful Kick, Ban and Unban during testing with Eric using two
+Steam accounts. An unrelated player discovered the public lobby, joined and played
+two games: the first confirmed organic public matchmaking session.
+These are participant reports, not newly captured agent logs or offline evidence.
+Tested corrected development DLL SHA-256:
+CCA2EAE1C4071437D02A023108055CEB7C3D2DFB1EF1B191FDE2538A4C20E8BD
 
-PRIOR IN-GAME EVIDENCE FOR THIS SAME PLUGIN
+STABLE BUILD COMPARISON
+Informational/product/plugin version 0.2.0; assembly/file version 0.2.0.0.
+Stable DLL SHA-256:
+43DC0942683D135254DF5D5E8C77E45B57DA8EFC9C0F0F16AB8D6F50F5C6EBCF
+Only informational/Windows product metadata and startup version text changed.
+Source files are otherwise identical. Complete assembly bytes match after
+normalizing allowed version differences, MVID, timestamp and build-symbol data;
+the complete Windows resource tree is checked separately and changes only its
+ProductVersion string. No meaningful behavior change or additional live test claim.
+The newly stamped stable DLL has not had a separate live game session.
 
-Normal Steam Library launch; single-account hosting and discovery of its own
-waiting lobby; native solo Co-op start withdrawing the listing; ingame state;
-return to the 3D lobby with Public Hosting ON or OFF; native visibility withdrawal;
-advertised-host disconnect cleanup; corrected tooltip text/box; Public Lobbies
-heading, normal browser and F8 fallback panel. Multiple UI resolutions/scales
-were captured and bounds checked. Some navigation was exercised synthetically.
+OFFLINE VALIDATION EXECUTED ON THE STABLE BUILD
+- Release build, zero warnings and zero errors.
+- 176 mod regression checks, retaining all 100 prior matchmaking checks.
+- 30 exact Harmony targets and 1804 external member references resolved against
+  actual installed game/loader assemblies. Original game assembly hashes match.
+- 25 separate offline smoke-harness checks. No game/Steam processes are launched.
+- Release ZIP extraction, exact allowlist, checksums, version/resource/dependency
+  inspection, no personal configs/bans/logs/assets, and preservation checks are
+  recorded in the local package verification report.
+Offline policy/session/filesystem checks are not live Steam authentication tests.
 
-No game is launched or modified during release preparation. Prior runtime
-evidence is not a new release-install test on a clean second machine/account.
+EARLIER AGENT-OBSERVED SINGLE-ACCOUNT TEST
+Manual Steam startup/readiness and waiting host; corrected native labels, host
+row/self-action protection, empty bans, tabs/Back/reopen, Options/return and Public
+Hosting ON/OFF at 1920x1080 / 100% UI scale. The original beta/config were restored
+after those sessions. This release preparation did not change installed files.
 
-NOT VERIFIED - STILL OPEN
-
-Two-account public joining, nonmember discovery, both players spawning, remote
-scene sync, voice, friend/invite late joins, physical controllers and real network
-races. Last-slot contention, host migration, other mod/game/loader versions and
-vanilla interoperability have not been established. Offline tests of related
-guard logic do not replace these live tests. No atomic race-safety claim.
-
-A genuine two-account smoke test is recommended before approving a broad public
-release. This beta package and its notices do not mark that missing test as passed.
+REMAINING SCOPE
+Actual host-restart ban persistence; all invitation/friends/public rejoin routes;
+three-account bystander isolation during moderation; all connection/cleanup and
+transition races; large/duplicate/Unicode rosters/bans; every confirmation/pagination
+and controller path; other display settings, game versions/platforms/loaders;
+unmodified and mixed-version clients. No blanket security/compatibility certification.
+Steam lobby membership slots cannot be forcibly evicted by this mod. Corrupt local
+ban storage is preserved and blocks remote admission pending deliberate recovery.
+See KNOWN LIMITATIONS.txt.

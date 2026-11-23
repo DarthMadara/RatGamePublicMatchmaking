@@ -1,32 +1,21 @@
-Rat Game Public Matchmaking - uninstall or roll back
+Rat Game Public Matchmaking v0.2.0 - rollback / removal
 
-1. Close Rat Game completely.
-2. In Steam, right-click Rat Game -> Manage -> Browse local files.
-3. Remove the folder BepInEx\plugins\RatGamePublicMatchmaking.
-   If you installed the DLL somewhere else under plugins, remove that extra
-   RatGamePublicMatchmaking.dll as well. Leave other mods alone.
-4. Optionally remove BepInEx\config\local.ratgame.publicmatchmaking.cfg to
-   forget this mod's preferences. Leaving it there does not load the mod.
-5. Start the game from Steam. This mod's controls and public browser are gone.
+Quit Rat Game normally and confirm Rat Game.exe has exited before changing files.
 
-If you want the previous working mod instead, restore its backed-up DLL and
-config while the game is closed, rather than deleting them.
+To revert an update, replace only
+BepInEx/plugins/RatGamePublicMatchmaking/RatGamePublicMatchmaking.dll
+with your previous DLL from backup, then verify its recorded SHA-256.
+Keep backup DLLs outside BepInEx/plugins to avoid duplicate loading.
 
-TO REMOVE THE BUNDLED LOADER TOO
+To disable this mod, move its DLL/plugin folder outside BepInEx/plugins.
+Leave the shared loader and other plugins intact.
 
-Only do this if you installed BepInEx solely for this mod and no other mods
-depend on it. Restore any loader files you backed up before installation.
-For an otherwise fresh installation, remove the BepInEx folder and these
-bundle-supplied files beside Rat Game.exe:
+Preserve BepInEx/config/local.ratgame.publicmatchmaking.cfg and the entire
+BepInEx/config/local.ratgame.publicmatchmaking/ directory, including backups.
+Removal/downgrade disables moderation enforcement; v0.1 does not enforce v0.2 bans
+even when the banlist is retained.
 
-  winhttp.dll
-  doorstop_config.ini
-  .doorstop_version
-
-Do not remove Rat Game.exe, Rat Game_Data, UnityPlayer.dll, MonoBleedingEdge or
-other original game files. Removing BepInEx would also remove any other plugins,
-their settings and logs, so keep it if you use other mods.
-
-This mod does not replace original game assemblies. Steam's file verification
-may repair original game files, but it does not reliably remove added mod files;
-use the steps above to uninstall the mod itself.
+Launch through Steam and check the intended version (or absence of the mod).
+No original game files need removal/replacement. Never delete Rat Game_Data.
+For complete loader removal, follow BepInEx instructions after considering other
+plugins: removing a shared loader disables them too.

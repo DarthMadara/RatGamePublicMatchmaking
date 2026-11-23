@@ -1,0 +1,102 @@
+v0.2.0 stable preparation | Madara | November 22, 2026
+
+Runtime changes from Eric-tested dev.1: ONLY src/RatGamePublicMatchmaking.csproj
+informational version and src/Plugin.cs startup version text, both to 0.2.0.
+All other implementation files unchanged. Full normalized assembly and complete
+Windows version-resource comparisons pass, allowing only those version changes.
+
+Updated README.md, CHANGELOG.txt, BUILDING.txt, this summary and current live-test
+matrix/runtime status to distinguish Madara/Eric's participant-confirmed Kick,
+Ban/Unban and organic public session from offline/agent-observed results.
+Added INSTALL.txt, UNINSTALL.txt, KNOWN LIMITATIONS.txt, THIRD_PARTY_NOTICES.txt;
+release-docs contains package README/start help, test summary and release notes.
+release-tools contains preservation, version-resource/binary comparison and
+allowlisted stable packaging/verification tooling. No source/binary installation.
+Public source/docs are staged under ReleaseCandidates/0.2.0/repository; private
+snapshots, config/bans, logs and proprietary reference/dump files are excluded.
+
+Earlier development summary follows as recorded:
+
+v0.2.0-dev.1 working copy | Madara
+All paths below are relative to MatchmakingDevelopment/0.2.0-host-moderation.
+No earlier revision, release candidate, public release or proprietary game
+assembly was changed. There is no Git checkout/branch in this installation.
+
+ADDED IMPLEMENTATION
+src/BanStore.cs - strict versioned local XML, ID/name validation, durable atomic
+  writes and backup, fail-closed corrupt-data handling, Unicode-safe display names.
+src/ModerationPolicy.cs - local host authority and self/stale-identity guards;
+  kick, confirmed durable ban, unban and explicit failure results.
+src/SteamConnections.cs - distinct SDK handle/Steam account registry with monotonic
+  generations, incoming-message identity/ban gate and disconnect cleanup.
+src/Moderation.cs - SDK raw remote identity accessor for bundled wrapper defect;
+  NGO mapping adapter, six host-scoped transport patches and a final NGO approval
+  patch, early/repeated ban enforcement, queued approval rejection, native remote
+  disconnect, pending/socket/session cleanup and retry.
+src/ModerationUi.cs - native registered SokScreen, Pause player/ban entry points,
+  refreshing selectable roster, host marker, kick/ban confirmation, individual
+  unban with pagination, safe-area layout and native navigation/input routing.
+  Follow-up UI test reproduced native LocSetter.Awake replacing the inactive
+  screen's permanent button labels with Refresh. Reapply only this panel's labels
+  immediately after native SetScreen activation; authority/networking unchanged.
+
+MODIFIED EXISTING IMPLEMENTATION (only this development copy)
+src/Plugin.cs - v0.2 metadata, moderation initialization/poll/disconnect/shutdown
+  hooks and developer/AI transparency in startup log. PublicHosting default unchanged.
+src/RatGamePublicMatchmaking.csproj - 0.2.0-dev.1 version, portable local reference
+  paths, installed Facepunch transport reference; no proprietary copies in output.
+src/UiInspection.cs - separate v0.2 diagnostic directory, enumerated local native
+  moderation UI smoke commands and moderation state logging. Defaults OFF.
+
+ADDED / EXPANDED TESTING AND TOOLING
+tests/ModerationTests.cs - 76 new offline checks, simulated sessions plus actual
+  temporary-file persistence/lock/failure tests; no live account or game code.
+tests/Program.cs - retain original 100 checks, invoke moderation suite, report
+  failures cleanly without launching Windows crash-report dialogs.
+tests/SafetyTests.csproj - link pure moderation files; disable unnecessary apphost.
+validation/ModerationVerification.cs - checked IL contracts for SDK identity layout,
+  mapping, host transport guards, no remote endpoints, admission, atomic commit
+  order, native screen integration and cleanup. No runtime auth claim.
+validation/Program.cs - preserve existing validation, allow/verify seven new patches,
+  resolve transport references, verify the internal final-approval selector and
+  denial-only response writes, run moderation checks, add API inspection mode
+  and explicitly report live-moderation=false.
+validation/Validation.csproj - portable Mono.Cecil reference from installed BepInEx.
+validation/SmokeTest.ps1 - phased local single-account Steam launch/observe/restore
+  tooling with verified byte backups, timestamped process/readiness/host evidence,
+  manual Steam fallback, separate primary/cleanup failures, and restoration only
+  while the game is stopped. Never launches Rat Game directly or kills it.
+validation/SmokeTestSupport.psm1 - fresh-run log parsing, exact file replacement
+  with process guards, shared log reads and independent structured error records.
+validation/SmokeTest.Tests.ps1 - 25 independent offline harness checks; no game,
+  Steam or installed-file actions. Separate from the 176 mod regression checks.
+build.cmd - portable installed game/BepInEx arguments; offline build/tests/validation.
+
+DOCUMENTATION / POLICY
+README.md - development feature usage, persistence/recovery, auth boundaries,
+  limitations and unchanged AI Usage Disclosure / unofficial Sokpop disclaimer.
+CHANGELOG.txt - prepend unpublished v0.2 development changes, retain v0.1 history.
+BUILDING.txt - current portable build/validation, optional local smoke instructions.
+AGENTS.md - preserve ongoing no-generated-assets/no-redistribution commitments.
+.gitignore - exclude binaries/caches, proprietary IL/hierarchy dumps and private
+  smoke evidence, command files and screenshots from source integration.
+CHANGES.txt - this file.
+inspection/NETWORK-INVESTIGATION.txt - confirmed architecture vs assumptions.
+inspection/LIVE-TEST-MATRIX.txt - outstanding two/three-account and UI release checks.
+inspection/RUNTIME-STATUS.txt - current single-account hosting/UI results, previous
+  failed smoke attempts, verified restoration and remaining runtime limitations.
+inspection/MODERATION-UI-TEST.txt - single-account manual UI observations, native
+  screenshots/state evidence, reproduced label defect, scoped fix and retest.
+
+UNCHANGED BASELINE FILES COPIED FOR A SELF-CONTAINED DEVELOPMENT TREE
+src/Browser.cs, Diagnostics.cs, HostLifecycle.cs, HostPhase.cs, Joining.cs,
+  NativeUi.cs, Patches.cs, Safety.cs, TitleBrowser.cs, UiPresentation.cs.
+NuGet.Config, LICENSE.txt, validation/RuntimeVerification.cs (historical v0.1-only).
+
+GENERATED LOCAL EVIDENCE / OUTPUT (not distribution payload)
+artifacts/BuildAndTests.log, OfflineTests.log, Validation.json, Preservation.json.
+artifacts/RemoteBaseline.json - public GitHub tree and source blob identities.
+src/bin/Release/netstandard2.1/RatGamePublicMatchmaking.dll and build intermediates.
+inspection/*.il.txt - local read-only decompilation evidence, ignored and private.
+artifacts/smoke-* - private logs/config backups/original DLL backup, ignored.
+No game assets or assemblies are included in the distributable mod/source changes.

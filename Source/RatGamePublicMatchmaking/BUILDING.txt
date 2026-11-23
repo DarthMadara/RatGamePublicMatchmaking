@@ -1,45 +1,78 @@
-Rat Game Public Matchmaking source | Author: Madara | MIT
+Rat Game Public Matchmaking v0.2.0 | Madara | MIT
 
-These .cs files are the unchanged sources for the validated waiting-browser.1
-plugin. Only the project file's default reference paths have been made portable;
-no developer's user-profile path is required. The packaged DLL is the official
-byte-identical installed/validated build, not a renamed or feature-modified build.
+Requires .NET SDK 10, your own installed Steam Rat Game and BepInEx 5.4.23.5.
+NuGet.Config clears remote feeds. No external package downloads are required
+with SDK targeting packs and BepInEx core assemblies present locally.
 
-For development you need .NET SDK 10 and your own compatible Rat Game installation.
-The game, Unity, Steam and Netcode libraries are read-only references from your
-installation; they are intentionally absent from this download. BepInEx runtime
-references must come from your own compatible BepInEx 5 installation. The
-GitHub source tree intentionally does not contain the packaged runtime files.
-NuGet.Config clears remote feeds; no package restore downloads are needed for
-the mod or pure offline tests when the .NET targeting packs are installed.
+From the source directory:
+  build.cmd
+or with explicit references:
+  build.cmd "C:\path\to\rat game" "C:\path\to\BepInEx\core"
 
-From this directory, build with your own paths, for example:
+The script builds the mod, runs offline tests, and runs the Mono.Cecil validator
+against actual installed assemblies. Fixed SHA256 contracts identify the
+investigated game build. Reinvestigate after an update; do not substitute stubs.
 
-  dotnet build src/RatGamePublicMatchmaking.csproj -c Release -p:RatGameDir="C:\path\to\rat game" -p:BepInExCoreDir="C:\path\to\rat game\BepInEx\core"
-
-The project retains its original release-package default BepInExCoreDir path,
-which does not exist in this cleaned source repository. Set BepInExCoreDir
-explicitly to your local BepInEx/core folder as shown above. You can also
-override GameManagedDir with -p:GameManagedDir="your path".
-The plugin targets netstandard2.1. It does not require a new NGO protocol or any
-game assembly edits. Do not copy referenced game assemblies into distribution.
-
-Run the pure offline regression suite:
-
+Individual commands:
+  dotnet build src/RatGamePublicMatchmaking.csproj -c Release -p:RatGameDir="C:\path\to\rat game"
   dotnet run --project tests/SafetyTests.csproj -c Release
+  dotnet run --project validation/Validation.csproj -c Release -p:CecilPath="C:\path\to\BepInEx\core\Mono.Cecil.dll" -- . "C:\path\to\rat game\Rat Game_Data\Managed" "C:\path\to\BepInEx\core"
 
-These tests execute no Unity, Steam or game code and do not prove remote joining.
-See the repository's Validation/TEST-SUMMARY.txt for the beta's actual test status.
+The plugin targets netstandard2.1. References use Private=false: only the mod DLL
+belongs in plugin output. Mono.Cecil is open-source validator tooling from
+BepInEx. Do not distribute game reference DLLs, IL/hierarchy dumps, screenshots,
+private logs or local banlists. No new artistic assets are created or bundled.
 
-Different source/PDB paths can change a locally rebuilt DLL's hash. The release
-preparation build used .NET SDK 10.0.402 and PathMap to map the clean source root
-back to the validated project's source root, producing exactly the installed DLL.
-The original reference library bytes were also unchanged. A normal local build
-without that mapping is not expected to reproduce the official checksum exactly.
+build.cmd does not install, create a ZIP, push, or publish anything. Output:
+  src/bin/Release/netstandard2.1/RatGamePublicMatchmaking.dll
+The installed/released 0.1.0 beta stays separate. This workspace has no Git
+checkout or executable; use this isolated development directory. For integration,
+apply the reviewed source changes to a v0.2.0 host-moderation branch in an actual
+checkout. CHANGES.txt maps changed and added files. Do not replace beta releases.
 
-Development command tools and display-only preview rows still exist in these
-sources, behind the NativeUiTools=false default. The distribution includes no
-ui-command.txt, hierarchy captures, fake Steam lobbies or active test fixtures.
-Keep NativeUiTools OFF for play. F8 is the existing optional runtime fallback.
+validation/SmokeTest.ps1 is phased single-account runtime tooling. Requires Steam
+and a closed game before installation/restoration. It verifies and backs up the
+installed beta/configuration, stages the validated development DLL, and temporarily
+disables Public Hosting and NativeUiTools. It never launches the game executable,
+kills a game process, or swaps a DLL while Rat Game is running. No banlist is edited.
 
-The MIT license for this code is in LICENSE.txt in this source directory.
+Run the harness's independent offline checks first:
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File validation/SmokeTest.Tests.ps1
+Then use these phases for an intentional local smoke test:
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File validation/SmokeTest.ps1 -Action Prepare
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File validation/SmokeTest.ps1 -Action Launch -WaitSeconds 20
+If automation produces no game process, use the normal Steam Library Play button.
+Once Steam is ready, use the game's normal Host action and wait in the lobby.
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File validation/SmokeTest.ps1 -Action Observe -WaitSeconds 30
+Quit Rat Game normally when observations are complete, then restore:
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File validation/SmokeTest.ps1 -Action Restore
+
+The execution-policy option applies to that PowerShell process only. The session
+path is tracked in artifacts/active-smoke-session.txt until restoration succeeds.
+An explicit -Session path can inspect a completed session after that pointer is
+removed. Session.json and timestamped Events.jsonl keep candidate/backup hashes,
+launch requests, process IDs, fresh-log initialization/readiness/hosting events,
+and independent PrimaryErrors/CleanupErrors arrays. Current runs cannot borrow
+readiness from an older log. A failed launch leaves the candidate staged for a
+manual Steam launch; it does not silently restore or close the game. Always finish
+with Restore and verify both original hashes. The live BepInEx log is retained;
+its pre-test copy is backed up separately. Private smoke evidence is ignored.
+
+This verifies local startup/hosting only, not remote moderation. See
+inspection/RUNTIME-STATUS.txt for the actual results and remaining live checks.
+
+NativeUiTools defaults OFF. Diagnostic commands are strictly enumerated local
+commands, with no arbitrary code execution or network endpoint. New moderation
+commands exercise actual native buttons. Do not include private smoke backups
+or evidence in a source distribution. Historical RuntimeVerification.cs concerns
+only v0.1 evidence and cannot establish v0.2 moderation verification.
+
+Current test scope: see the release Validation/TEST-SUMMARY.txt, README.md and
+inspection/LIVE-TEST-MATRIX.txt. Madara reports successful Kick/Ban/Unban and an
+organic public session with Eric. Do not infer unreported cases from that report.
+Offline simulations, one-player hosting and screenshots remain separate evidence.
+
+Stable release preparation changed only informational/Windows product metadata
+and the startup version text from 0.2.0-dev.1 to 0.2.0. release-tools/CompareStable.ps1
+compares source, normalized full assembly bytes and all Windows resource values
+against the preserved tested DLL. Its local preserved evidence is not distributed.

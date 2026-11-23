@@ -15,7 +15,7 @@ namespace RatGamePublicMatchmaking
     {
         private bool uiInspected;
         private Gamepad? uiTestGamepad;
-        private static string UiDevelopmentPath => Path.Combine(Paths.GameRootPath, "MatchmakingDevelopment", "0.1.0+waiting-browser.1");
+        private static string UiDevelopmentPath => Path.Combine(Paths.GameRootPath, "MatchmakingDevelopment", "0.2.0-host-moderation");
         private void InspectNativeUi()
         {
             if (!nativeUiTools.Value || uiInspected || Time.unscaledTime < 8 || GameCanvas.instance == null) return;
@@ -67,6 +67,9 @@ namespace RatGamePublicMatchmaking
                 else if (command == "title") GameCanvas.instance.SetScreen<StartScreen>();
                 else if (command == "settings") GameCanvas.instance.SetScreen<LobbySettingsScreen>();
                 else if (command == "pause") GameCanvas.instance.SetScreen<PauseScreen>();
+                else if (command == "moderation-players") ClickUiButton(managePlayersButton!);
+                else if (command == "moderation-bans") ClickUiButton(manageBansButton!);
+                else if (command == "moderation-back") ClickUiButton(moderationBack!);
                 else if (command == "game") GameCanvas.instance.SetScreen<GameScreen>();
                 else if (command == "host") ClickUiButton(titleUi!.HostButton);
                 else if (command == "quit") ClickUiButton(titleUi!.QuitButton);
@@ -193,6 +196,11 @@ namespace RatGamePublicMatchmaking
             output.AppendLine("Screen=" + GameCanvas.instance.CurrentScreen?.GetType().Name + "; Steam=" + Steamworks.SteamClient.IsValid +
                 "; Host=" + HostReady + "; Requested=" + publicHosting.Value + "; Advertised=" + IsPublicHost + "; Status=" + status);
             output.AppendLine("Selected=" + EventSystem.current.currentSelectedGameObject?.name);
+            output.AppendLine("Moderation authority=" + ModerationAuthority + "; bansReady=" + (bans?.Ready == true) +
+                "; bannedCount=" + (bans == null ? 0 : bans.Snapshot().Length) + "; page=" + (showBans ? "bans" : "players") +
+                "; renderedRows=" + (moderationScroll == null ? 0 : moderationScroll.content.childCount) +
+                "; kickEnabled=" + (kickButton != null && kickButton.ButtonEnabled) +
+                "; banEnabled=" + (banButton != null && banButton.ButtonEnabled));
             output.AppendLine("Lifecycle=" + hostPhase + "; lobbyLoadConfirmed=" + lobbyLoadConfirmed + "; gameState=" +
                 GameManager.instance?.CurrentGameState.Value + "; uiScale=" + GameSettings.Current.UIScale);
             if (titleBrowser != null)

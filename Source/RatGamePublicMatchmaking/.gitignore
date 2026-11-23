@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+.cache/
+inspection/*.il.txt
+inspection/*Hierarchy*
+screenshots/
+ui-command.txt
+*.dll
+*.pdb
+*.zip
+artifacts/test-data/
+artifacts/smoke-*/
+inspection/UiState.log
+inspection/UiCommands.log
+**/bans.v1.xml*

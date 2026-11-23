@@ -5,8 +5,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UseAppHost>false</UseAppHost>
   </PropertyGroup>
   <ItemGroup><Compile Include="..\src\Safety.cs" Link="Safety.cs" /></ItemGroup>
   <ItemGroup><Compile Include="..\src\UiPresentation.cs" Link="UiPresentation.cs" /></ItemGroup>
   <ItemGroup><Compile Include="..\src\HostPhase.cs" Link="HostPhase.cs" /></ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\src\BanStore.cs" Link="BanStore.cs" />
+    <Compile Include="..\src\ModerationPolicy.cs" Link="ModerationPolicy.cs" />
+    <Compile Include="..\src\SteamConnections.cs" Link="SteamConnections.cs" />
+  </ItemGroup>
 </Project>

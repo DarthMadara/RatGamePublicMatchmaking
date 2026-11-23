@@ -1,17 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
     <AssemblyName>RatGamePublicMatchmaking</AssemblyName>
-    <Version>0.1.0</Version>
-    <InformationalVersion>0.1.0+waiting-browser.1</InformationalVersion>
+    <Version>0.2.0</Version>
+    <InformationalVersion>0.2.0</InformationalVersion>
     <Deterministic>true</Deterministic>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <RatGameDir Condition="'$(RatGameDir)' == ''">$(MSBuildThisFileDirectory)..\..\..</RatGameDir>
     <GameManagedDir Condition="'$(GameManagedDir)' == ''">$(RatGameDir)\Rat Game_Data\Managed</GameManagedDir>
-    <BepInExCoreDir Condition="'$(BepInExCoreDir)' == ''">$(MSBuildThisFileDirectory)..\..\..\GameFiles\BepInEx\core</BepInExCoreDir>
+    <BepInExCoreDir Condition="'$(BepInExCoreDir)' == ''">$(RatGameDir)\BepInEx\core</BepInExCoreDir>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BepInEx"><HintPath>$(BepInExCoreDir)\BepInEx.dll</HintPath><Private>false</Private></Reference>
@@ -19,6 +20,7 @@
     <Reference Include="Assembly-CSharp"><HintPath>$(GameManagedDir)\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Facepunch.Steamworks.Win64"><HintPath>$(GameManagedDir)\Facepunch.Steamworks.Win64.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="Unity.Netcode.Runtime"><HintPath>$(GameManagedDir)\Unity.Netcode.Runtime.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Facepunch Transport for Netcode for GameObjects"><HintPath>$(GameManagedDir)\Facepunch Transport for Netcode for GameObjects.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine"><HintPath>$(GameManagedDir)\UnityEngine.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameManagedDir)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
     <Reference Include="UnityEngine.IMGUIModule"><HintPath>$(GameManagedDir)\UnityEngine.IMGUIModule.dll</HintPath><Private>false</Private></Reference>
@@ -34,4 +36,3 @@
     <Error Condition="!Exists('$(GameManagedDir)\Assembly-CSharp.dll')" Text="Set GameManagedDir to the installed Rat Game Managed folder (read-only references)." />
   </Target>
 </Project>
-

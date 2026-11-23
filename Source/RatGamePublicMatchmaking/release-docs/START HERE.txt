@@ -1,0 +1,20 @@
+Rat Game Public Matchmaking v0.2.0 - Host Moderation
+Unofficial community mod by Madara for Rat Game by Sokpop Collective.
+
+Read INSTALL.txt before copying files. This ZIP contains the plugin, not BepInEx.
+Requires Windows x64 Steam game build 26403247 and BepInEx 5.4.23.5 Windows x64.
+New users: INSTALL.txt links the supported official loader; no beta is required.
+
+Existing users: close the game, back up the old mod DLL outside BepInEx/plugins,
+then replace ONLY BepInEx/plugins/RatGamePublicMatchmaking/RatGamePublicMatchmaking.dll.
+Preserve all existing config and banlist files. Never copy files while Rat Game runs.
+Launch normally through Steam. Look for 0.2.0 by Madara loaded in the fresh log.
+
+Host a lobby, then Esc/Pause -> Manage Players -> select another player -> Kick
+or Ban... . Manage Bans allows individual Unban. Public Hosting can remain OFF.
+
+Read Validation/TEST-SUMMARY.txt and KNOWN LIMITATIONS.txt for confirmed tests and
+pending cases. SHA256SUMS.txt covers every other ZIP entry. No user configuration,
+banlists, original game assemblies or game artwork is supplied.
+AI-assisted code; no AI-generated assets. Native installed UI/assets only.
+Unofficial, without Sokpop affiliation, approval or endorsement.

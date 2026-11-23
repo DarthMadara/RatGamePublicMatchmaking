@@ -50,7 +50,7 @@ These participant-confirmed observations do **not** establish exhaustive compati
 
 Release preparation reported a warning-free build, **176 offline regression checks**, **25 harness checks**, **30 Harmony target validations**, and **58 package checks**. Offline checks are not substitutes for live multiplayer testing.
 
-Please report issues with game build, mod version, reproduction steps, and relevant logs, after removing any private information. Historical beta results are documented in [Validation/TEST-SUMMARY.txt](Validation/TEST-SUMMARY.txt); see the [v0.2.0 release notes](https://github.com/DarthMadara/RatGamePublicMatchmaking/releases/tag/v0.2.0) for the current version.
+Please report issues with game build, mod version, reproduction steps, and relevant logs, after removing any private information. Current testing scope and remaining checks are documented in [Validation/TEST-SUMMARY.txt](Validation/TEST-SUMMARY.txt); see the [v0.2.0 release notes](https://github.com/DarthMadara/RatGamePublicMatchmaking/releases/tag/v0.2.0) for the current version.
 
 ## Source code and building
 
@@ -59,7 +59,7 @@ Please report issues with game build, mod version, reproduction steps, and relev
 - [Build instructions](Source/RatGamePublicMatchmaking/BUILDING.txt)
 - [License](Source/RatGamePublicMatchmaking/LICENSE.txt)
 
-**Source synchronization note:** The repository's existing source and historical test files may still reflect the v0.1.0 beta. The locally prepared v0.2.0 source changes have not yet been confirmed as committed to this branch; the published release ZIP is the current v0.2.0 download. Do not assume the default-branch source reproduces v0.2.0 until it is synchronized.
+The source on `main` is synchronized with **v0.2.0**, including host moderation, persistent local bans, native UI, regression tests, and Harmony validation. It targets the same implementation as the published release. Build using your own installed Rat Game and BepInEx references; no proprietary assemblies or assets are included.
 
 ## AI Usage Disclosure
 

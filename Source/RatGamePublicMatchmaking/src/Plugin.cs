@@ -13,7 +13,7 @@ using UnityEngine.InputSystem;
 
 namespace RatGamePublicMatchmaking
 {
-    [BepInPlugin(Id, Name, "0.1.0")]
+    [BepInPlugin(Id, Name, "0.2.0")]
     [BepInProcess("Rat Game.exe")]
     public sealed partial class Plugin : BaseUnityPlugin
     {
@@ -52,9 +52,10 @@ namespace RatGamePublicMatchmaking
             {
                 if (RenderMethod == null || EnterMethod == null || RpcStage == null)
                     throw new MissingMemberException("The installed game's networking/UI contract changed.");
+                InitializeModeration();
                 harmony = new Harmony(Id);
                 harmony.PatchAll(typeof(Plugin).Assembly);
-                Logger.LogInfo(Name + " 0.1.0 (waiting-browser.1) loaded. Public Hosting=" + publicHosting.Value);
+                Logger.LogInfo(Name + " 0.2.0 by Madara loaded. Unofficial community mod; AI-assisted code, native game UI assets. Public Hosting=" + publicHosting.Value);
                 PollDiagnostics();
             }
             catch (Exception error)
@@ -83,6 +84,7 @@ namespace RatGamePublicMatchmaking
             PollHostLifecycle();
             InspectNativeUi();
             PollNativeUi();
+            PollModeration();
             PollDiagnostics();
             PollPublicJoin();
             if (Keyboard.current?.f8Key.wasPressedThisFrame == true)
@@ -168,6 +170,8 @@ namespace RatGamePublicMatchmaking
 
         internal void Disconnecting()
         {
+            CloseModerationUi();
+            ResetModerationConnections();
             LogLobbySnapshot("disconnect-before");
             RememberRetiredHost();
             RestoreRevealedControls();
@@ -238,6 +242,7 @@ namespace RatGamePublicMatchmaking
             Disconnecting();
             lifetime.Cancel();
             RestoreNativeUi();
+            RemoveModerationUi();
             FinishShutdown();
         }
 

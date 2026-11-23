@@ -8,6 +8,8 @@ void Check(bool condition, string name)
     passed++;
 }
 
+try
+{
 var native = new FakeLobby();
 int buildReads = 0;
 Check(!LiveBuild.TryRead(false, () => { buildReads++; return 123; }, out string liveBuild, out _) &&
@@ -296,7 +298,14 @@ Check(matchAd.Withdraw(true, "starting") && matchLobby.Calls[0] == "ratgame.publ
 Check(matchAd.Publish("123", true, HostPhase.Waiting) && matchLobby.Data[PublicPolicy.PublicationKey] != waitingGeneration,
     "a confirmed return to waiting creates a fresh period; stale rows cannot authorize it");
 
-Console.WriteLine($"{passed} safety and presentation checks passed. No game, Unity, or Steam code was executed.");
+ModerationTests.Run(Check);
+Console.WriteLine($"{passed} offline safety, presentation and moderation checks passed. No game, Unity, or Steam code was executed.");
+}
+catch (Exception error)
+{
+    Console.Error.WriteLine(error);
+    Environment.ExitCode = 1;
+}
 
 sealed class FakeLobby : IHostLobby
 {

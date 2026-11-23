@@ -1,3 +1,70 @@
+Rat Game Public Matchmaking v0.2.0 - Host Moderation | Madara
+Prepared November 22, 2026; publication is tracked separately.
+
+- Host-only native Manage Players and Manage Bans screens.
+- Targeted Kick, confirmed persistent host-local Steam account Ban, individual
+  Unban and reconnection rejection at game transport/Netcode admission.
+- Steam identity mapped separately from Netcode client IDs; host/self/stale-target
+  protection, atomic local persistence and failure-aware cleanup.
+- Corrected cloned moderation UI labels retained from the tested development DLL.
+- Public Hosting/browser, native private/friends flows and original gameplay retained.
+- Stable metadata/startup text changed from 0.2.0-dev.1 to 0.2.0 only. Normalized
+  full assembly and Windows version-resource comparisons confirm unchanged code.
+- Release build: zero warnings/errors; 176 offline mod checks, 25 harness checks,
+  30 exact Harmony targets and 1804 external references. These are offline results.
+- Simple DLL-only upgrade preserves user configuration and bans. Fresh users use
+  the existing supported BepInEx 5.4.23.5 Windows x64 prerequisite.
+- No new artistic assets, proprietary game redistribution, telemetry or global bans.
+  AI Usage Disclosure and unofficial/no-Sokpop-endorsement notices retained.
+
+November 22, 2026 — First confirmed organic public matchmaking session
+During multiplayer testing with Eric, an unrelated player discovered the public
+lobby, joined successfully, and played two games. Madara also confirmed successful
+Kick, Ban and Unban with two Steam accounts on the corrected development build.
+These participant-confirmed outcomes do not establish every scenario. Host-restart
+ban persistence, all invitation/rejoin paths, three-account bystander isolation,
+controllers, other display settings and all races/transitions remain unverified.
+The newly version-stamped stable DLL has not had a separate live session.
+
+Historical development/release entries below are retained as recorded. Their
+then-current test limitations are superseded only by the confirmed scope above.
+
+Rat Game Public Matchmaking | Author: Madara
+
+0.2.0-dev.1 - UNPUBLISHED host moderation development, 2026-11-22
+- Controlled UI test reproduced cloned buttons labeled Refresh. Reapply the panel's
+  own labels after native screen activation. Fresh manual Steam retest verified
+  corrected labels, disabled host/self actions, empty Bans, tabs/Back/reopen,
+  Options/return and Public Hosting ON/OFF at 1920x1080 / Scale100. Original beta
+  and configuration restored after exit with verified hashes. No remote action test.
+- Follow-up runtime check: final DLL initialized and hosted a waiting lobby on
+  one account after manual Steam Library launch; original beta/config restored
+  after exit with matching hashes. No remote moderation claim.
+- Phased Steam-only smoke harness, 25 independent harness checks, fresh-run
+  process/readiness/hosting evidence, separate original/cleanup failures, manual
+  launch fallback and guarded restoration. Fixed observed live-log sharing error.
+- Native Pause Manage Players / Manage Bans screens, refreshing roster and host marker.
+- Host-only targeted kick, confirmed persistent local account bans and individual unban.
+- Ban enforcement at Steam transport admission and incoming traffic, independent of
+  Public Hosting and Steam lobby visibility. Steam membership eviction is unavailable.
+- Separate NGO client / connection handle / SDK Steam identity mapping; checked accessor
+  avoids a confirmed defective Identity getter in the bundled Facepunch wrapper.
+- Atomic local banlist with backup, malformed-file protection, safe Unicode labels,
+  stale-selection/self-target guards and native remote disconnect/session cleanup.
+- 176 offline checks, including all prior 100 matchmaking checks; 30 exact patch targets.
+- No new artistic assets, redistributed proprietary references, gameplay changes,
+  external telemetry, global bans, or client moderation command endpoint.
+- Existing AI Usage Disclosure retained. Unofficial; no Sokpop endorsement claimed.
+
+NOT RELEASE READY: real remote identity, kick/ban/rejoin, unban, populated bans UI,
+invites, physical controllers and multiplayer compatibility still need verification. Earlier smoke attempts
+were incomplete; the later final-DLL single-account Steam hosting check passed.
+Installed beta and original user configuration were restored. No release or Nexus
+file replaced.
+See inspection/RUNTIME-STATUS.txt, LIVE-TEST-MATRIX.txt, CHANGES.txt and README.md.
+
+Earlier release history (preserved):
+
 Rat Game Public Matchmaking | Author: Madara
 
 0.1.0-beta.1 - first public beta candidate, prepared 2026-11-22

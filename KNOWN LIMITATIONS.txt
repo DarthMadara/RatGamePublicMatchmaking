@@ -1,58 +1,56 @@
-Rat Game Public Matchmaking - first beta limitations
+Rat Game Public Matchmaking v0.2.0 | Madara | known limitations
 
-NOT VERIFIED IN 0.1.0+waiting-browser.1
+CONFIRMED SCOPE
+Madara reports successful live Kick, Ban and Unban using two Steam accounts with
+Eric on the corrected v0.2.0-dev.1 DLL. On November 22, 2026, an unrelated player
+also discovered the public lobby, joined and played two games. No broader test
+coverage is implied. Single-account UI/navigation evidence is separate.
+Stable v0.2.0 is verified equivalent apart from version metadata/startup text;
+the newly stamped DLL has not undergone a separate live session.
 
-- Two-account public joining, including discovery by a nonmember, connection,
-  both players spawning, scene sync, voice and actual remote gameplay.
-- Friend/invite late joins. Native paths and global Steam admission are kept
-  available during normal transitions, but their behavior has not been verified.
-- Physical controller compatibility. Native navigation is reused and synthetic
-  selection/movement checks were performed; this is not a hardware controller test.
-- Real network races: delayed Steam metadata, simultaneous joins, last-slot
-  contention, host withdrawal/start timing and owner migration between clients.
-- Vanilla/older-mod interoperability, other mods, other loader versions,
-  other operating systems, localization and every possible resolution/UI scale.
+STILL NEED LIVE VERIFICATION
+- Actual ban persistence and admission after quitting/restarting the host game.
+- Every rejoin path: Steam invitations, friends, public browser, pending joins,
+  stale callbacks and unusual Steam/relay failures. A successful Ban test does
+  not establish every bypass scenario.
+- Three-account isolation: host, moderation target and an unaffected bystander.
+  The organic session does not establish that moderation happened with all three.
+- Duplicate/Unicode names, large banlists, confirmation/pagination/controller
+  navigation, cleanup, authority/connection timing and every match-transition race.
+- Other resolutions/scales, physical controllers, unmodified or mixed-version
+  clients, other game builds, platforms and loader versions.
 
-CHECKED LOCALLY IN THE VALIDATED REVISION
+STEAM IDENTITY / MEMBERSHIP
+Steam membership is separate from Netcode connections. Identity comes from
+SDK-populated host callbacks and checked client/transport maps, not names or
+client-provided IDs. The bundled wrapper's defective public Identity getter is
+avoided via its inspected SDK-populated private identity field. Game/transport
+updates require reinvestigation. Unsupported transports lack moderation controls.
+Offline spoofing checks do not constitute a live adversarial security audit.
 
-Normal Steam launch, single-account hosting, a filtered Steam query returning
-the host's own waiting lobby, public withdrawal during native solo Co-op start,
-ingame state, return with Public Hosting ON or OFF, native visibility withdrawal,
-and advertised-host disconnect cleanup. These are local lifecycle checks, not
-evidence that a second account can join. UI screenshots/bounds were checked at
-1920x1080 at all five built-in scales, 1280x720 and 1366x768 at 140%, and
-1280x1024 at 100%. The offline regression suite passed 100 checks.
+Bans reject game admission/traffic independently of public discovery/visibility.
+This mod cannot forcibly evict Steam lobby membership; a rejected account may
+still see/enter the Steam lobby and occupy a membership slot.
 
-STALE LISTINGS AND REMAINING RACES
+LOCAL BANS
+Host-local only. No telemetry, global service or centralized reporting.
+Unreadable/malformed storage, or a missing main file with a backup, blocks remote
+admission instead of silently discarding bans. Preserve both files and repair
+deliberately with the game closed. The .bak is the previous revision and may omit
+the latest ban. Local filesystem administrators can edit their own banlist.
+A saved ban remains active if disconnect fails; record the failure and retry.
 
-Steam metadata and cached search results take time to update. Public joins
-recheck the build, waiting state, public flag, public joinability, publication
-generation, capacity and member-visible owner at the appropriate steps. An
-observed withdrawal cancels that pending attempt. A changed publication requires
-a fresh row; an old row cannot silently authorize a new advertising period.
+PUBLIC MATCHMAKING
+Steam metadata/results may lag. Full/withdrawn/starting lobbies can briefly remain
+visible; joining rechecks conditions. Only waiting lobbies are advertised.
+After a failed/cancelled public join, an old Steam request may need to settle;
+restart before retrying the same lobby if needed. An empty list is not proof that
+Steam networking works or that no hosts exist.
 
-These checks use information already delivered to the client. A change that
-has not arrived yet, or happens after the final check/connection start, can
-still race admission. There is no atomic host-side public-intent handshake.
-A host crash can leave a stale listing until Steam catches up. Owner migration
-before the first owner pin is another boundary. No complete race protection
-is claimed, and a completed connection is not automatically ejected afterward.
+KNOWN NATIVE STARTUP ERROR
+A StartScreen.GetBuildId exception occurred before Steam became ready in successful
+beta/development sessions. Its native path was not changed. Check subsequent
+readiness/hosting results rather than treating that early error as proof either way.
 
-The normal friends/invite/direct-ID path keeps the game's rules. Steam's
-global nonjoinable switch would block invitees too, so normal match transitions
-close the mod's public metadata gate without globally denying those native
-connections. An unmodified client is not subject to this mod's public checks.
-
-STEAM REQUESTS AND EMPTY RESULTS
-
-Steam requests cannot always be cancelled. A local timeout does not release
-a query lane until the underlying request settles. Failed joins can leave a
-same-lobby callback quarantine; a retry may need the old callback or a restart.
-The installed Steam wrapper returns null for both zero matches and a missing
-SDK result. "No public lobbies returned" does not prove a successful empty search.
-
-A native StartScreen build-ID exception has occurred before Steam finishes
-initializing. The mod preserves that original exception and waits for a valid
-positive live build before public operations; it does not bypass Steam setup.
-
-Distribution in beta does not turn any NOT VERIFIED item above into a pass.
+Supported target: Windows x64 Steam game build 26403247 / BepInEx 5.4.23.5.
+No gameplay changes, redistributed game assets or AI-generated artistic assets.
