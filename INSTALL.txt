@@ -1,73 +1,55 @@
-Rat Game Public Matchmaking - installation
-Author: Madara | Package: 0.1.0-beta.1
+Rat Game Public Matchmaking — v0.2.0 installation
+Author: Madara
+Requires Windows x64 Steam Rat Game, checked on game build 26403247,
+and BepInEx 5.4.23.5 Windows x64.
 
-You need the Windows 64-bit Steam version of Rat Game. This beta was checked
-against Steam game build 26403247 and BepInEx 5.4.23.5. Other game builds,
-operating systems and loader versions have not been verified.
+IMPORTANT: The v0.2.0 release ZIP contains the plugin, not a complete BepInEx loader.
+The previous v0.1.0 beta ZIP had a different layout. Do NOT look for GameFiles
+in the v0.2.0 package.
 
-FIRST, FIND YOUR GAME FOLDER
+LOCATE THE GAME FOLDER
+1. Exit Rat Game completely.
+2. Steam Library -> Rat Game -> Manage -> Browse local files.
+3. This opens the folder containing Rat Game.exe.
+4. Extract RatGamePublicMatchmaking-v0.2.0.zip somewhere else first.
 
-1. Close Rat Game completely.
-2. In your Steam Library, right-click Rat Game, choose Manage, then Browse
-   local files. This opens the folder containing Rat Game.exe.
-3. Extract this mod ZIP to a separate folder, such as Downloads. Do not run
-   the game from the extracted ZIP folder.
+FIRST-TIME INSTALLATION
+1. Download BepInEx 5.4.23.5 Windows x64 from its official release:
+   https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.5
+2. Follow BepInEx's setup instructions for the game directory.
+   If you already have BepInEx installed, do not overwrite it blindly.
+3. Copy the DLL from the extracted package at:
+   BepInEx\plugins\RatGamePublicMatchmaking\RatGamePublicMatchmaking.dll
+   to the same relative path under the Rat Game installation folder.
+4. Launch Rat Game through Steam.
 
-IF THIS IS YOUR FIRST BEPINEX MOD
+UPGRADING FROM v0.1.0 OR v0.2.0 DEVELOPMENT BUILDS
+1. Exit Rat Game completely.
+2. Back up your existing RatGamePublicMatchmaking.dll outside BepInEx\plugins.
+3. Copy ONLY the new DLL from the v0.2.0 ZIP into:
+   <Rat Game folder>\BepInEx\plugins\RatGamePublicMatchmaking\
+   replacing the old RatGamePublicMatchmaking.dll.
+4. Keep ALL existing configuration and banlists unchanged. The update package
+   intentionally does not contain config files or banlist data.
+5. Keep one active copy of the mod DLL under BepInEx\plugins.
+6. Start Rat Game through Steam.
 
-4. If the game folder already has a BepInEx folder, winhttp.dll or
-   doorstop_config.ini, use the existing-loader instructions below instead.
-5. Open GameFiles inside the extracted mod. Copy EVERYTHING INSIDE GameFiles
-   into the game folder next to Rat Game.exe. Copy the contents, not the
-   GameFiles folder itself. Include the small .doorstop_version file if shown.
-6. You should now have these items next to Rat Game.exe:
+VERIFY
+The main menu should have Public Hosting and Public Lobbies. In a host lobby,
+the host should have Manage Players and Manage Bans controls. Check
+BepInEx\LogOutput.log for mod startup/version diagnostics if necessary.
 
-   BepInEx
-   winhttp.dll
-   doorstop_config.ini
-   .doorstop_version
+ROLLBACK
+Exit Rat Game and restore your backed-up prior DLL. Keep your config and
+banlist files unchanged.
 
-   Inside BepInEx\plugins\RatGamePublicMatchmaking you should find
-   RatGamePublicMatchmaking.dll. No files inside Rat Game_Data are replaced.
-7. Launch Rat Game from your Steam Library. The main menu should show
-   Public Hosting and a Public Lobbies panel on the right.
+KNOWN LIMITS
+The mod targets game build 26403247 and BepInEx 5.4.23.5 Windows x64.
+Invite/reconnect edge cases, host-restart ban persistence, every network race,
+and some controller paths remain unverified. Kicking does not ban a user.
+Host-local bans deny game connections; they do not forcibly remove someone
+from Steam lobby membership.
 
-IF BEPINEX OR AN EARLIER COPY OF THIS MOD IS ALREADY INSTALLED
-
-4. Back up your existing BepInEx folder, winhttp.dll, doorstop_config.ini and
-   .doorstop_version to a separate backup folder. Keep any previous mod DLL.
-5. Check the start of BepInEx\LogOutput.log for BepInEx 5.4.23.5. If it reports
-   another loader version, leave that loader in place; this bundle has not
-   been checked with it. Resolve the version difference before proceeding.
-6. For a matching 5.4.23.5 setup, copy only:
-
-   GameFiles\BepInEx\plugins\RatGamePublicMatchmaking
-     -> your game's BepInEx\plugins folder
-
-   GameFiles\BepInEx\config\local.ratgame.publicmatchmaking.cfg
-     -> your game's BepInEx\config folder
-
-   Replace this mod's previous DLL/config only after backing them up. Use the
-   supplied config to reset Public Hosting and development tools to OFF.
-   Do not overwrite the loader, other plugins or other configuration files.
-7. Keep just one installed copy of RatGamePublicMatchmaking.dll. Remove an
-   extra older copy from the plugins folder after backing it up elsewhere.
-8. Launch Rat Game from Steam.
-
-IF THE PUBLIC LOBBIES PANEL IS MISSING
-
-Close the game and check that the DLL is in the exact plugins path above,
-with no extra GameFiles or nested BepInEx folder. Look in BepInEx\LogOutput.log
-for Rat Game Public Matchmaking and waiting-browser.1. A game update or another
-mod may be incompatible. Restore your backups to return to your previous setup.
-
-IF STEAM IS UNAVAILABLE OR THE LIST IS EMPTY
-
-Use a normal Steam Library launch with Steam online. Wait a moment and click
-Refresh. An empty list may simply mean no compatible waiting hosts are nearby;
-the Steam wrapper also cannot distinguish every missing response from an empty
-result. There is no listing of active matches and no cross-build fallback.
-
-If a public Join fails or is cancelled, wait for the old Steam request to settle.
-You may need to restart the game before retrying the same lobby. See the README
-and known limitations. Do not enable NativeUiTools to troubleshoot normal play.
+This is an unofficial mod by Madara, not endorsed by Sokpop Collective.
+The package contains no proprietary Rat Game assets or game assemblies.
+No AI-generated artistic assets were used.
