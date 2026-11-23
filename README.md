@@ -1,59 +1,56 @@
 # Rat Game Public Matchmaking
 
-**Unofficial Rat Game mod by Madara** · **v0.1.0-beta.1** · Windows x64 / Steam
+**Unofficial Rat Game mod by Madara** · **v0.2.0** · Windows x64 / Steam
 
-Adds opt-in **Public Hosting** and a **Public Lobbies** browser to Rat Game's main menu, using the game's existing Steam lobby system and native-style UI.
-
-> **Early beta:** Single-account Steam hosting and lobby lifecycle were checked locally. **Two-account public discovery and joining have not yet been verified.** Please report results rather than assuming public joining is fully tested.
+Adds opt-in **Public Hosting**, a native-style **Public Lobbies** browser, and host-only moderation (**Kick**, persistent host-local **Ban**, and **Unban**) to Rat Game.
 
 ## Download
 
-**[Download v0.1.0-beta.1 from GitHub Releases](https://github.com/DarthMadara/RatGamePublicMatchmaking/releases/tag/v0.1.0-beta.1)**
+**[Download v0.2.0 from GitHub Releases](https://github.com/DarthMadara/RatGamePublicMatchmaking/releases/tag/v0.2.0)**
 
-Use the release ZIP for installation. **Do not download the repository source ZIP as an installer.**
+Choose the attached **`RatGamePublicMatchmaking-v0.2.0.zip`**. **Do not use GitHub's automatically generated “Source code” ZIP as an installer.**
+
+[Previous v0.1.0 beta release](https://github.com/DarthMadara/RatGamePublicMatchmaking/releases/tag/v0.1.0-beta.1) remains available.
 
 ## Features
 
-- Opt-in Public Hosting switch (OFF by default)
-- Public Lobbies browser on the main menu, with player counts, Join and Refresh
-- Automatic refresh approximately every 30 seconds while the menu is open
-- Only advertises explicitly public, waiting lobbies; withdraws listings when matches start
-- Rechecks public listing conditions when attempting to join
-- Preserves the game's normal private/friends lobby paths
+- Opt-in **Public Hosting**, OFF by default on a fresh installation.
+- **Public Lobbies** browser with player counts, Join, Refresh, and approximately 30-second automatic refresh.
+- Only explicitly advertised waiting lobbies are listed; public listings are withdrawn when matches begin.
+- Host-only **Manage Players** screen showing connected players and host status.
+- **Kick** a selected player without banning them.
+- **Ban** a player with confirmation, persist that host-local ban, and reject future gameplay connections by the banned Steam identity.
+- **Manage Bans** and individually **Unban** players.
+- Moderation is available to hosts even with Public Hosting OFF; ordinary private/friends game flows remain intended to work normally.
+- Uses Rat Game's existing installed UI assets and components; no generated art or other game assets.
 
-## Installation
+## Installation and upgrade
 
-Requires the Windows 64-bit Steam version of Rat Game. The beta was locally checked with game build **26403247** and **BepInEx 5.4.23.5**.
+**Requirements:** Windows x64 Steam Rat Game, checked against game build **26403247**, and **BepInEx 5.4.23.5 Windows x64**. Other platforms, game builds, and loader versions are unverified. The **v0.2.0 ZIP contains the plugin, not a bundled BepInEx loader**.
 
-1. Close Rat Game. In Steam, right-click **Rat Game → Manage → Browse local files**.
-2. Download and extract the **release ZIP** to a temporary folder.
-3. **New BepInEx installation:** Copy the *contents* of the ZIP's `GameFiles` folder into the game directory, next to `Rat Game.exe`. Do not copy the `GameFiles` directory itself.
-4. **Existing BepInEx installation:** Back up your current setup. If it uses the matching loader version, copy only the mod's plugin directory and supplied configuration file to their corresponding `BepInEx` locations. Do not overwrite another loader or other plugins.
-5. Launch through Steam. Look for **Public Hosting** and **Public Lobbies** on the main menu.
+1. **Close Rat Game** completely. In Steam, use **Rat Game → Manage → Browse local files** to open its installation directory.
+2. **First-time installation:** Install [BepInEx 5.4.23.5 Windows x64](https://github.com/BepInEx/BepInEx/releases/tag/v5.4.23.5) into the Rat Game folder, following the loader's instructions. If BepInEx is already installed, do not overwrite another working loader.
+3. Download and extract the **v0.2.0 release ZIP** to a temporary folder.
+4. Back up any old `RatGamePublicMatchmaking.dll` outside `BepInEx/plugins`.
+5. Copy `BepInEx/plugins/RatGamePublicMatchmaking/RatGamePublicMatchmaking.dll` from the ZIP to the corresponding location in Rat Game's installation directory, replacing the previous mod DLL if present.
+6. **Keep existing configuration and banlists.** The ZIP does not contain replacements for them. Ensure there is only one installed copy of this mod's DLL under `plugins`.
+7. Start Rat Game **from Steam**. Look for **Public Hosting**, **Public Lobbies**, **Manage Players**, and **Manage Bans** where applicable.
 
-Read [INSTALL.txt](INSTALL.txt) for complete instructions, including updates and troubleshooting. See [UNINSTALL.txt](UNINSTALL.txt) to remove the mod.
+See [INSTALL.txt](INSTALL.txt) for detailed instructions and [UNINSTALL.txt](UNINSTALL.txt) for removal guidance.
 
 ## Using the mod
 
-Enable **Public Hosting**, then use the game's normal **Host game** action. The lobby is advertised after the host reaches the waiting lobby. Turn Public Hosting OFF to withdraw it. On the main menu, use **Public Lobbies** to find compatible waiting lobbies and select **Join**.
+Enable **Public Hosting** and host normally to advertise a waiting lobby. Other mod users can join through **Public Lobbies**. The host can use **Manage Players** to Kick or Ban a remote player and **Manage Bans** to Unban accounts. A Kick does not create a ban; bans are local to the host, not global across Rat Game.
 
-Both players should use the same mod release and game build for beta testing. This is a recommended test setup, not a guarantee of successful remote joining.
+## Testing and known limitations
 
-## Beta limitations and testing
+**November 22, 2026:** During live multiplayer testing with Eric, Kick, Ban, and Unban were reported working as intended on two Steam accounts. An unrelated third player discovered the public lobby and joined for two games — the project's first reported organic public matchmaking session.
 
-**Not yet verified:** real two-account public joining, friends/invite late joins, physical controller navigation, and live network races. Steam metadata can be delayed; full or withdrawn lobbies may briefly appear in stale results.
+These participant-confirmed observations do **not** establish exhaustive compatibility. Host-restart ban persistence, every invitation/reconnect scenario, simultaneous network races, full bystander isolation, physical controller navigation, and other game/mod versions remain unverified. The published 0.2.0 DLL differs from the tested development DLL only in version metadata and startup version text according to release preparation checks; the stamped stable build itself was not separately live-tested.
 
-The release passed **100 offline regression checks**, and local Steam hosting/lobby lifecycle checks. These do **not** establish successful remote public joining.
+Release preparation reported a warning-free build, **176 offline regression checks**, **25 harness checks**, **30 Harmony target validations**, and **58 package checks**. Offline checks are not substitutes for live multiplayer testing.
 
-Read [KNOWN LIMITATIONS.txt](KNOWN%20LIMITATIONS.txt) and [Validation/TEST-SUMMARY.txt](Validation/TEST-SUMMARY.txt) for details. Please include your game build, mod version, and reproduction steps when reporting bugs. Review logs for private/session information before sharing.
-
-## v0.2.0 — Host moderation (release preparation)
-
-The next version adds host-only **Manage Players** and **Manage Bans** screens, targeted **Kick**, persistent host-local **Ban**, and individual **Unban**. The UI reuses Rat Game's installed native assets; no AI-generated assets were introduced.
-
-**November 22, 2026 multiplayer milestone:** The mod author and Eric reported successful live tests of Kick, Ban, and Unban. During their session, an unrelated player joined through public matchmaking and stayed for two games — the project's first reported organic public matchmaking session.
-
-**Testing scope:** These are participant-reported results, not an exhaustive certification. Invitation bypass, ban persistence after restart, controller navigation, and all multiplayer race conditions have not been established by these reports. The previous beta remains the downloadable release until a separately packaged v0.2.0 binary is published.
+Please report issues with game build, mod version, reproduction steps, and relevant logs, after removing any private information. Historical beta results are documented in [Validation/TEST-SUMMARY.txt](Validation/TEST-SUMMARY.txt); see the [v0.2.0 release notes](https://github.com/DarthMadara/RatGamePublicMatchmaking/releases/tag/v0.2.0) for the current version.
 
 ## Source code and building
 
@@ -62,14 +59,14 @@ The next version adds host-only **Manage Players** and **Manage Bans** screens, 
 - [Build instructions](Source/RatGamePublicMatchmaking/BUILDING.txt)
 - [License](Source/RatGamePublicMatchmaking/LICENSE.txt)
 
-The repository tracks source and documentation; **compiled binaries and bundled loader dependencies are distributed in GitHub Releases**, not the source tree. Building requires your own Rat Game installation and BepInEx references. See the build instructions for the exact commands.
+**Source synchronization note:** The repository's existing source and historical test files may still reflect the v0.1.0 beta. The locally prepared v0.2.0 source changes have not yet been confirmed as committed to this branch; the published release ZIP is the current v0.2.0 download. Do not assume the default-branch source reproduces v0.2.0 until it is synchronized.
 
 ## AI Usage Disclosure
 
-OpenAI Codex assisted with programming, debugging, and code review for this mod. **No AI-generated artwork, textures, 3D models, audio, or other game assets were created or used.** The mod's interface reuses UI elements and assets from the player's existing Rat Game installation to remain consistent with the game's visual style; those assets are not newly generated or redistributed as original artwork.
+OpenAI Codex assisted with programming, debugging, and code review for this mod. **No AI-generated artwork, textures, 3D models, audio, or other game assets were created or used.** The mod reuses UI elements and assets from the player's existing Rat Game installation; those game assets are not newly generated or redistributed as original artwork.
 
 ## Credits and disclaimer
 
-Created by **Madara**. Rat Game is developed by **Sokpop Collective**. This is an unofficial community modification and is **not affiliated with or endorsed by Sokpop Collective**. No proprietary Rat Game assets or game assemblies are distributed as source.
+Created by **Madara**. Rat Game is developed by **Sokpop Collective**. This is an unofficial community modification **not affiliated with or endorsed by Sokpop Collective**. No proprietary Rat Game assets or game assemblies are included in the mod package.
 
-The original mod code is licensed under the [MIT License](LICENSE.txt). Third-party components included in release downloads retain their own licenses; see [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt) and [Licenses/](Licenses/).
+Original mod code is under the [MIT License](LICENSE.txt). Third-party components retain their own licenses.
